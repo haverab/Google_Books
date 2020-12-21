@@ -4,7 +4,7 @@ const PORT = process.env.PORT || 3001;
 const app = express();
 const routes = require("./routes");
 const mongoose = require("mongoose")
-
+require('dotenv').config({ silent: true })
 
 
 
@@ -23,6 +23,9 @@ app.get("*", (req, res) => {
 });
 
 //need to connect to Mongo DB here
+mongoose.connect(process.env.ATLAS_URI , {useNewUrlParser:true, 
+useUnifiedTopology:true});
+
 
 app.listen(PORT, () => {
   console.log(`🌎 ==> API server now on port ${PORT}!`);
